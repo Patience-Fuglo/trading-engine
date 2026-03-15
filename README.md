@@ -325,6 +325,14 @@ tests/
     test_dashboard.py
 ```
 
+
+# Requirements
+
+Python 3.9+
+
+Required library:
+
+pip install rich
 ---
 
 # Running the Project
@@ -338,14 +346,14 @@ pip install rich
 Run component tests:
 
 ```
-python test_event.py
-python test_order_book.py
-python test_position.py
-python test_risk_manager.py
-python test_execution_engine.py
-python test_market_data.py
-python test_backtester.py
-python test_dashboard.py
+python tests/test_event.py
+python tests/test_order_book.py
+python tests/test_position.py
+python tests/test_risk_manager.py
+python tests/test_execution_engine.py
+python tests/test_market_data.py
+python tests/test_backtester.py
+python tests/test_dashboard.py
 ```
 
 Each test demonstrates a different part of the trading system.
