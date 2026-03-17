@@ -1,4 +1,4 @@
-from src.order import Order
+from trading_engine.order import Order
 
 
 class Strategy:

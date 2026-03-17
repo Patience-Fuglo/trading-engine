@@ -1,4 +1,4 @@
-from src.events import OrderSubmittedEvent, OrderFilledEvent, OrderCancelledEvent
+from trading_engine.events import OrderSubmittedEvent, OrderFilledEvent, OrderCancelledEvent
 
 
 class ExecutionEngine:

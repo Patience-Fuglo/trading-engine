@@ -1,6 +1,6 @@
 import csv
 import time
-from src.events import MarketDataEvent
+from trading_engine.events import MarketDataEvent
 
 
 class MarketDataFeed:
