@@ -360,6 +360,30 @@ Each test demonstrates a different part of the trading system.
 
 ---
 
+# Example Output
+
+Running the backtester produces performance metrics:
+
+```
+Backtest Report
+------------------------------
+Starting Cash: $100,000.00
+Ending Value: $102,450.75
+Total Return: 2.45%
+Number of Trades: 8
+Total Fees Paid: $127.50
+Max Drawdown: 3.20%
+```
+
+The dashboard displays real-time system state during backtesting or live execution, showing:
+
+* Active positions and their P&L
+* Recent order executions with fills
+* Risk manager status and exposure metrics
+* Event log of system activity
+
+---
+
 # Technologies
 
 * Python
