@@ -402,6 +402,18 @@ Total Fees Paid: $127.50
 Max Drawdown: 3.20%
 ```
 
+**Sample Trade Log** (trade-by-trade execution):
+
+```
+Timestamp          Signal    Price    Position    Cash        PnL
+2024-01-01 09:30   BUY       150.00   10 shares   $98,499.00  $0.00
+2024-01-02 14:15   HOLD      152.50   10 shares   $98,499.00  +$250.00
+2024-01-05 10:45   SELL      155.00   0 shares    $100,048.50 +$500.00
+2024-01-08 11:20   BUY       153.00   10 shares   $98,519.00  +$500.00
+2024-01-10 16:30   HOLD      154.50   10 shares   $98,519.00  +$645.00
+2024-01-15 13:00   SELL      156.00   0 shares    $100,038.75 +$867.50
+```
+
 The dashboard displays real-time system state during backtesting or live execution, showing:
 
 * Active positions and their P&L
