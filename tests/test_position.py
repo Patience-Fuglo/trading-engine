@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
 	sys.path.insert(0, str(BASE_DIR))
 
-from src.position_manager import PositionManager
+from trading_engine.position_manager import PositionManager
 
 pm = PositionManager()
 
@@ -25,3 +25,7 @@ pm.update_position("AAPL", -75, 160)
 position = pm.get_position("AAPL")
 print("\nAfter sell:")
 print(position)
+
+current_price = 160
+print("\nUnrealized PnL:", round(position.unrealized_pnl(current_price), 2))
+print("Total PnL:", round(pm.get_total_pnl({"AAPL": 160}), 2))

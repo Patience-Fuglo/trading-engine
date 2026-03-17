@@ -5,8 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-from src.order import Order
-from src.order_book import OrderBook
+from trading_engine.order import Order
+from trading_engine.order_book import OrderBook
 
 book = OrderBook()
 
@@ -21,4 +21,12 @@ with open(BASE_DIR / "data" / "sample_orders.csv", "r") as file:
             quantity=row["quantity"],
             price=row["price"],
             order_type=row["order_type"],
-            timestamp=row["
+            timestamp=row["timestamp"]
+        )
+        book.add_order(order)
+
+print("Best Bid:", book.get_best_bid())
+print("Best Ask:", book.get_best_ask())
+print("Spread:", book.get_spread())
+
+book.print_book()

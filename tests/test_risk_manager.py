@@ -5,9 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-from src.order import Order
-from src.position_manager import PositionManager
-from src.risk_manager import RiskManager
+from trading_engine.order import Order
+from trading_engine.position_manager import PositionManager
+from trading_engine.risk_manager import RiskManager
 
 
 pm = PositionManager()
@@ -31,4 +31,10 @@ result2 = rm.check_order(order2, pm, current_prices, daily_pnl)
 print("Test B:", result2)
 
 # Test C: daily pnl = -6000 -> should fail daily loss limit
-order3 = Order("ORD003", "AAPL", "
+order3 = Order("ORD003", "AAPL", "BUY", 500, 150.0, "LIMIT")
+result3 = rm.check_order(order3, pm, current_prices, -6000)
+print("Test C:", result3)
+
+print("\nRisk Log:")
+for entry in rm.log:
+    print(entry)

@@ -4,8 +4,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-from src.event_bus import EventBus
-from src.market_data import MarketDataFeed
+from trading_engine.event_bus import EventBus
+from trading_engine.market_data import MarketDataFeed
 
 
 def print_market_event(event):

@@ -5,8 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-from src.strategy import MovingAverageCrossover
-from src.backtester import Backtester
+from trading_engine.strategy import MovingAverageCrossover
+from trading_engine.backtester import Backtester
 
 
 price_data = []

@@ -293,10 +293,6 @@ Displays:
 
 ```
 trading_engine/
-
-README.md
-
-src/
     events.py
     event_bus.py
     order.py
@@ -309,20 +305,24 @@ src/
     strategy.py
     backtester.py
     dashboard.py
-
-data/
-    sample_orders.csv
-    sample_prices.csv
+    __init__.py
 
 tests/
     test_event.py
     test_order_book.py
     test_position.py
+    test_positions.py
     test_risk_manager.py
     test_execution_engine.py
     test_market_data.py
     test_backtester.py
     test_dashboard.py
+
+data/
+    sample_orders.csv
+    sample_prices.csv
+
+README.md
 ```
 
 

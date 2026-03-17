@@ -5,8 +5,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-from src.event_bus import EventBus
-from src.events import Event
+from trading_engine.event_bus import EventBus
+from trading_engine.events import Event
 
 def event_listener(event):
     print(f"Received event: {event.event_type}")

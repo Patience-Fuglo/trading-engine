@@ -5,12 +5,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-from src.event_bus import EventBus
-from src.order import Order
-from src.order_book import OrderBook
-from src.position_manager import PositionManager
-from src.risk_manager import RiskManager
-from src.execution_engine import ExecutionEngine
+from trading_engine.event_bus import EventBus
+from trading_engine.order import Order
+from trading_engine.order_book import OrderBook
+from trading_engine.position_manager import PositionManager
+from trading_engine.risk_manager import RiskManager
+from trading_engine.execution_engine import ExecutionEngine
 
 
 def event_listener(event):
