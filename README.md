@@ -266,6 +266,33 @@ Backtester tracks:
 * transaction fees
 * maximum drawdown
 
+Example strategy implementation:
+
+```python
+class MovingAverageCrossover(Strategy):
+    def __init__(self, short_window=5, long_window=20):
+        self.short_window = short_window
+        self.long_window = long_window
+        self.prices = []
+        self.previous_signal = None
+
+    def on_market_data(self, symbol, price, timestamp):
+        self.prices.append(price)
+        
+        if len(self.prices) < self.long_window:
+            return None
+        
+        short_ma = sum(self.prices[-self.short_window:]) / self.short_window
+        long_ma = sum(self.prices[-self.long_window:]) / self.long_window
+        
+        if short_ma > long_ma:
+            return Order(symbol=symbol, side="BUY", quantity=10)
+        elif short_ma < long_ma:
+            return Order(symbol=symbol, side="SELL", quantity=10)
+```
+
+The strategy receives market data events, calculates moving averages, and generates buy/sell signals that flow through the execution engine.
+
 ---
 
 ## 8. Monitoring Dashboard
