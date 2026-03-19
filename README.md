@@ -69,6 +69,20 @@ Market Data Feed
 
 Each module can be extended or replaced without changing the entire system.
 
+Mermaid diagram:
+
+```mermaid
+flowchart TD
+    A[Market Data Feed] --> B[Event Bus]
+    B --> C[Strategy]
+    C --> D[Execution Engine]
+    D --> E[Order Book]
+    D --> F[Risk Manager]
+    D --> G[Position Manager]
+    G --> H[Dashboard]
+    G --> I[Backtester]
+```
+
 ---
 
 # Features
@@ -454,6 +468,18 @@ The dashboard displays real-time system state during backtesting or live executi
 
 ---
 
+# Performance Snapshot
+
+On a local laptop run (March 2026), the project test signal is:
+
+* `pytest -q` passing
+* End-to-end demo scripts passing
+* CI enabled for push/pull request validation
+
+This project prioritizes architecture clarity over latency optimization.
+
+---
+
 # Technologies
 
 * Python
@@ -486,6 +512,18 @@ Possible extensions include:
 * slippage and transaction cost modeling
 * portfolio optimization
 * real-time dashboards
+
+---
+
+# What I Would Build Next
+
+If extended toward production simulation quality, next priorities would be:
+
+1. Multi-asset and multi-symbol portfolio accounting
+2. Slippage/market-impact execution model
+3. Persistent storage for orders/fills/positions
+4. Parameterized strategy experiments with result tracking
+5. Async event processing and external market data adapters
 
 ---
 
