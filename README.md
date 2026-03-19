@@ -6,6 +6,7 @@
 ![Python](https://img.shields.io/badge/python-3.x-blue)
 ![Architecture](https://img.shields.io/badge/architecture-event--driven-green)
 ![Project](https://img.shields.io/badge/status-complete-brightgreen)
+![CI](https://github.com/Patience-Fuglo/trading-engine/actions/workflows/ci.yml/badge.svg)
 
 ---
 
@@ -29,6 +30,18 @@ The engine simulates the key components of a trading system:
 The design emphasizes **modularity**, allowing each component to operate independently while interacting through an event system.
 
 This structure mirrors the architecture used in many **quantitative research and algorithmic trading platforms**.
+
+---
+
+# Portfolio Readiness
+
+This repository is prepared for portfolio/recruiter review with:
+
+* Reproducible dependency setup via `requirements.txt` and `pyproject.toml`
+* Assertion-based automated tests (`pytest`)
+* CI workflow on push and pull requests
+* Demonstration scripts for each major engine component
+* Clear architecture documentation and module separation
 
 ---
 
@@ -355,22 +368,40 @@ README.md
 
 # Requirements
 
-Python 3.9+
+Python 3.10+
 
-Required library:
+Install dependencies (standard):
 
-pip install rich
+```
+pip install -r requirements.txt
+```
+
+Or install as a package with dev extras:
+
+```
+pip install -e .[dev]
+```
+
 ---
 
 # Running the Project
 
-Install dependencies:
+Run the full automated test suite:
 
 ```
-pip install rich
+pytest -q
 ```
 
-Run component tests:
+Run from a clean environment (recommended for reviewers):
+
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pytest -q
+```
+
+Optional demo scripts:
 
 ```
 python tests/test_event.py
@@ -383,7 +414,7 @@ python tests/test_backtester.py
 python tests/test_dashboard.py
 ```
 
-Each test demonstrates a different part of the trading system.
+The pytest suite provides assertion-based checks; the script files above provide interactive component walkthroughs.
 
 ---
 

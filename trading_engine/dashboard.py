@@ -1,6 +1,37 @@
-from rich.table import Table
-from rich.console import Console
-from rich.text import Text
+try:
+    from rich.table import Table
+    from rich.console import Console
+except ModuleNotFoundError:
+    class Table:
+        def __init__(self, title=""):
+            self.title = title
+            self.columns = []
+            self.rows = []
+
+        def add_column(self, name):
+            self.columns.append(name)
+
+        def add_row(self, *values):
+            self.rows.append(values)
+
+        def __str__(self):
+            lines = []
+            if self.title:
+                lines.append(self.title)
+            if self.columns:
+                lines.append(" | ".join(self.columns))
+                lines.append("-" * max(10, len(" | ".join(self.columns))))
+            for row in self.rows:
+                lines.append(" | ".join(str(v) for v in row))
+            return "\n".join(lines)
+
+    class Console:
+        def print(self, value=""):
+            print(value)
+
+        def clear(self):
+            print("\n" * 2)
+
 from datetime import datetime
 
 console = Console()
