@@ -33,15 +33,15 @@ This structure mirrors the architecture used in many **quantitative research and
 
 ---
 
-# Portfolio Readiness
+# Setup and Testing
 
-This repository is prepared for portfolio/recruiter review with:
+The project includes:
 
-* Reproducible dependency setup via `requirements.txt` and `pyproject.toml`
-* Assertion-based automated tests (`pytest`)
+* Dependency management via `requirements.txt` and `pyproject.toml`
+* Automated tests with `pytest`
 * CI workflow on push and pull requests
-* Demonstration scripts for each major engine component
-* Clear architecture documentation and module separation
+* Example scripts demonstrating each engine component
+* Clear module documentation and separation of concerns
 
 ---
 
