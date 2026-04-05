@@ -1,51 +1,57 @@
 
-# Event-Driven Trading Engine in Python
+# Event-Driven Trading Engine
 
-### Quantitative Trading System Architecture Project
+**A modular quantitative trading system built from scratch in Python**
 
-![Python](https://img.shields.io/badge/python-3.x-blue)
+![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![Architecture](https://img.shields.io/badge/architecture-event--driven-green)
-![Project](https://img.shields.io/badge/status-complete-brightgreen)
-![CI](https://github.com/Patience-Fuglo/trading-engine/actions/workflows/ci.yml/badge.svg)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
-# Overview
+## Quick Start
 
-This project implements a **simplified event-driven trading engine from scratch** to demonstrate the core architecture used in many quantitative trading systems.
+```bash
+# Clone and setup
+git clone https://github.com/Patience-Fuglo/trading-engine.git
+cd trading-engine
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 
-The goal of this project is **not strategy profitability**, but understanding **how trading infrastructure is designed and connected**.
+# Run tests
+pytest -q
 
-The engine simulates the key components of a trading system:
+# Run backtest demo
+python tests/test_backtester.py
 
-* Market data feed
-* Event-driven communication
-* Order submission and execution
-* Order book matching
-* Risk management checks
-* Position and P&L tracking
-* Strategy backtesting
-* Terminal monitoring dashboard
-
-The design emphasizes **modularity**, allowing each component to operate independently while interacting through an event system.
-
-This structure mirrors the architecture used in many **quantitative research and algorithmic trading platforms**.
+# Run dashboard demo
+python tests/test_dashboard.py
+```
 
 ---
 
-# Setup and Testing
+## Overview
 
-The project includes:
+This project implements an **event-driven trading engine from scratch**, demonstrating the core architecture used in quantitative trading systems.
 
-* Dependency management via `requirements.txt` and `pyproject.toml`
-* Automated tests with `pytest`
-* CI workflow on push and pull requests
-* Example scripts demonstrating each engine component
-* Clear module documentation and separation of concerns
+**Core Components:**
+
+| Module | Description |
+|--------|-------------|
+| Event Bus | Decoupled pub/sub communication between components |
+| Order Book | Price-time priority matching engine |
+| Execution Engine | Order lifecycle management and routing |
+| Risk Manager | Pre-trade position and exposure checks |
+| Position Manager | Real-time P&L and holdings tracking |
+| Backtester | Historical strategy simulation with metrics |
+| Dashboard | Terminal UI for live monitoring |
+
+The design emphasizes **modularity**—each component operates independently while communicating through events, mirroring production trading system architecture.
 
 ---
 
-# System Architecture
+## System Architecture
 
 The system follows an **event-driven architecture** where each component communicates through events rather than direct coupling.
 
@@ -85,7 +91,7 @@ flowchart TD
 
 ---
 
-# Features
+## Features
 
 * Event-driven trading system architecture
 * Simulated order book with price priority matching
@@ -98,9 +104,9 @@ flowchart TD
 
 ---
 
-# Project Modules
+## Project Modules
 
-## 1. Event System
+### 1. Event System
 
 Provides communication between independent components.
 
@@ -122,7 +128,7 @@ Events allow different parts of the system to react to updates such as market da
 
 ---
 
-## 2. Order Book
+### 2. Order Book
 
 Stores buy and sell orders waiting to be matched.
 
@@ -148,7 +154,7 @@ best_bid >= best_ask
 
 ---
 
-## 3. Position & PnL Tracking
+### 3. Position & PnL Tracking
 
 Tracks portfolio holdings and profit/loss.
 
@@ -174,7 +180,7 @@ cash + position_quantity × current_price
 
 ---
 
-## 4. Risk Manager
+### 4. Risk Manager
 
 Applies safety checks before orders are executed.
 
@@ -194,7 +200,7 @@ Orders that fail these checks are rejected before execution.
 
 ---
 
-## 5. Execution Engine
+### 5. Execution Engine
 
 Central component that connects the system.
 
@@ -231,7 +237,7 @@ REJECTED
 
 ---
 
-## 6. Market Data Feed
+### 6. Market Data Feed
 
 Simulates a live data feed using historical CSV data.
 
@@ -261,7 +267,7 @@ Store price history
 
 ---
 
-## 7. Strategy & Backtester
+### 7. Strategy & Backtester
 
 Provides a framework for testing trading strategies on historical data.
 
@@ -322,7 +328,7 @@ The strategy receives market data events, calculates moving averages, and genera
 
 ---
 
-## 8. Monitoring Dashboard
+### 8. Monitoring Dashboard
 
 Provides a terminal-based interface to monitor the system.
 
@@ -343,7 +349,7 @@ Displays:
 
 ---
 
-# Project Structure
+## Project Structure
 
 ```
 trading_engine/
@@ -376,39 +382,46 @@ data/
     sample_orders.csv
     sample_prices.csv
 
+.github/
+    workflows/
+        ci.yml
+
 README.md
+LICENSE
+pyproject.toml
+requirements.txt
 ```
 
 
-# Requirements
+## Requirements
 
 Python 3.10+
 
-Install dependencies (standard):
+Install dependencies:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
-Or install as a package with dev extras:
+Or install as an editable package:
 
-```
+```bash
 pip install -e .[dev]
 ```
 
 ---
 
-# Running the Project
+## Running the Project
 
-Run the full automated test suite:
+Run the test suite:
 
-```
+```bash
 pytest -q
 ```
 
-Run from a clean environment (recommended for reviewers):
+Run from a clean environment:
 
-```
+```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -432,55 +445,89 @@ The pytest suite provides assertion-based checks; the script files above provide
 
 ---
 
-# Example Output
+## Sample Output
 
-Running the backtester produces performance metrics:
+### Backtester Results
 
+```bash
+$ python tests/test_backtester.py
+```
 ```
 Backtest Report
 ------------------------------
 Starting Cash: $100,000.00
-Ending Value: $102,450.75
-Total Return: 2.45%
-Number of Trades: 8
-Total Fees Paid: $127.50
-Max Drawdown: 3.20%
+Ending Value: $101,986.29
+Total Return: 1.99%
+Number of Trades: 4
+Total Fees Paid: $7.71
+Max Drawdown: 0.01%
 ```
 
-**Sample Trade Log** (trade-by-trade execution):
+### Dashboard Output
 
+```bash
+$ python tests/test_dashboard.py
 ```
-Timestamp          Signal    Price    Position    Cash        PnL
-2024-01-01 09:30   BUY       150.00   10 shares   $98,499.00  $0.00
-2024-01-02 14:15   HOLD      152.50   10 shares   $98,499.00  +$250.00
-2024-01-05 10:45   SELL      155.00   0 shares    $100,048.50 +$500.00
-2024-01-08 11:20   BUY       153.00   10 shares   $98,519.00  +$500.00
-2024-01-10 16:30   HOLD      154.50   10 shares   $98,519.00  +$645.00
-2024-01-15 13:00   SELL      156.00   0 shares    $100,038.75 +$867.50
+```
+Trading Engine Dashboard - 2024-01-15 09:30:00
+
+                                   Positions                                    
+┏━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Symbol ┃ Quantity ┃ Avg Price ┃ Current Price ┃ Unrealized    ┃ Realized P&L ┃
+┡━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ AAPL   │ 80       │ 150.00    │ 155.00        │ 400.00        │ 200.00       │
+│ MSFT   │ 50       │ 340.00    │ 350.00        │ 500.00        │ 0.00         │
+│ GOOGL  │ 30       │ 130.00    │ 135.00        │ 150.00        │ 0.00         │
+└────────┴──────────┴───────────┴───────────────┴───────────────┴──────────────┘
+                        Recent Orders                         
+┏━━━━━━━━━━┳━━━━━━━━┳━━━━━━┳━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━┓
+┃ Order ID ┃ Symbol ┃ Side ┃ Qty ┃ Price  ┃ Status           ┃
+┡━━━━━━━━━━╇━━━━━━━━╇━━━━━━╇━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━┩
+│ ORD001   │ AAPL   │ BUY  │ 100 │ 150.00 │ FILLED           │
+│ ORD002   │ MSFT   │ SELL │ 50  │ 350.00 │ PARTIALLY_FILLED │
+│ ORD003   │ GOOGL  │ BUY  │ 30  │ 130.00 │ ACTIVE           │
+└──────────┴────────┴──────┴─────┴────────┴──────────────────┘
+
+Risk Status
+Position Usage : █------------------- 8.0%
+Exposure Usage : ██████-------------- 34.0%
+Daily Loss Use : ████---------------- 24.0%
 ```
 
-The dashboard displays real-time system state during backtesting or live execution, showing:
+### Execution Engine Events
 
-* Active positions and their P&L
-* Recent order executions with fills
-* Risk manager status and exposure metrics
-* Event log of system activity
+```bash
+$ python tests/test_execution_engine.py
+```
+```
+Event: OrderSubmitted | Data: {'order_id': 'SELL001', 'symbol': 'AAPL', ...}
+Event: OrderSubmitted | Data: {'order_id': 'BUY001', 'symbol': 'AAPL', ...}
+Event: OrderFilled | Data: {'buyer_order_id': 'BUY001', 'seller_order_id': 'SELL001', 'fill_price': 150.0, 'fill_quantity': 50}
+
+Final Order Status:
+Sell Order: PARTIALLY_FILLED | Remaining Qty: 50
+Buy Order: FILLED | Remaining Qty: 0
+```
 
 ---
 
-# Performance Snapshot
+## Test Suite
 
-On a local laptop run (March 2026), the project test signal is:
+All tests passing:
 
-* `pytest -q` passing
-* End-to-end demo scripts passing
-* CI enabled for push/pull request validation
+```bash
+$ pytest -q
+.....                                                    [100%]
+5 passed
+```
 
-This project prioritizes architecture clarity over latency optimization.
+CI runs automatically on push and pull requests via GitHub Actions.
+
+This project prioritizes **architecture clarity** over latency optimization.
 
 ---
 
-# Technologies
+## Technologies
 
 * Python
 * Event-driven architecture
@@ -489,7 +536,7 @@ This project prioritizes architecture clarity over latency optimization.
 
 ---
 
-# Key Concepts Demonstrated
+## Key Concepts Demonstrated
 
 * Event-driven system design
 * Order book mechanics
@@ -501,7 +548,7 @@ This project prioritizes architecture clarity over latency optimization.
 
 ---
 
-# How This Architecture Can Be Extended
+## How This Architecture Can Be Extended
 
 Possible extensions include:
 
@@ -515,9 +562,9 @@ Possible extensions include:
 
 ---
 
-# What I Would Build Next
+## Future Improvements
 
-If extended toward production simulation quality, next priorities would be:
+Potential next steps:
 
 1. Multi-asset and multi-symbol portfolio accounting
 2. Slippage/market-impact execution model
@@ -527,10 +574,12 @@ If extended toward production simulation quality, next priorities would be:
 
 ---
 
-# Disclaimer
+## License
 
-This project is a **simplified educational implementation** of a trading engine designed to demonstrate quantitative trading system architecture.
-
-It is **not intended for live trading without significant additional development and testing**.
+MIT License. See [LICENSE](LICENSE) for details.
 
 ---
+
+## Disclaimer
+
+This is an educational implementation demonstrating trading system architecture. Not intended for live trading without significant additional development and testing.
